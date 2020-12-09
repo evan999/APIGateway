@@ -87,7 +87,7 @@ public class ApiGatewayApplication {
 
 //	@Value("${postUrl}")
 //	private String postUrl;
-	@PostMapping("/posts")
+	@PostMapping(path = "/posts", consumes = "application/json", produces = "application/json")
 	public String postRoute(@RequestBody String request) throws IOException, InterruptedException {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(request);
@@ -101,7 +101,7 @@ public class ApiGatewayApplication {
 
 
 		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
+				.uri(URI.create("http://jsonplaceholder.typicode.com/posts"))
 				.header("Content-Type", "application/json")
 				.POST(body)
 				.build();

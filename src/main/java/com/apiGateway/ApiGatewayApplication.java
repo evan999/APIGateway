@@ -1,5 +1,6 @@
 package com.apiGateway;
 
+import com.apiGateway.Routes.GetRoute;
 import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +19,7 @@ import java.net.http.HttpResponse;
 public class ApiGatewayApplication {
 
 	//private static final String POSTS_API_URL = "";
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
 
 //		HttpClient client = HttpClient.newHttpClient();
@@ -56,9 +57,9 @@ public class ApiGatewayApplication {
 		System.out.println(response.body());
 		 */
 
-
-
 		SpringApplication.run(ApiGatewayApplication.class, args);
+//		GetRoute route = new GetRoute();
+//		route.getRoute();
 	}
 
 	@Value("${url}")
@@ -84,31 +85,31 @@ public class ApiGatewayApplication {
 
 		return response.body();
 	}
-
-//	@Value("${postUrl}")
-//	private String postUrl;
-	@PostMapping(path = "/posts", consumes = "application/json", produces = "application/json")
-	public String postRoute(@RequestBody String request) throws IOException, InterruptedException {
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(request);
-//				.version(HttpClient.Version.HTTP_1_1)
-//				.followRedirects(HttpClient.Redirect.NORMAL)
+//
+////	@Value("${postUrl}")
+////	private String postUrl;
+//	@PostMapping(path = "/posts", consumes = "application/json", produces = "application/json")
+//	public String postRoute(@RequestBody String request) throws IOException, InterruptedException {
+//		HttpClient client = HttpClient.newHttpClient();
+//		HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(request);
+////				.version(HttpClient.Version.HTTP_1_1)
+////				.followRedirects(HttpClient.Redirect.NORMAL)
+////				.build();
+//
+//		//HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+//		//System.out.println(response.statusCode());
+//		//System.out.println(response.body());
+//
+//
+//		HttpRequest postRequest = HttpRequest.newBuilder()
+//				.uri(URI.create("http://jsonplaceholder.typicode.com/posts"))
+//				.header("Content-Type", "application/json")
+//				.POST(body)
 //				.build();
-
-		//HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-		//System.out.println(response.statusCode());
-		//System.out.println(response.body());
-
-
-		HttpRequest postRequest = HttpRequest.newBuilder()
-				.uri(URI.create("http://jsonplaceholder.typicode.com/posts"))
-				.header("Content-Type", "application/json")
-				.POST(body)
-				.build();
-		HttpResponse<String> response = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
-
-		return response.body();
-	}
+//		HttpResponse<String> response = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
+//
+//		return response.body();
+//	}
 
 //
 //	@GetMapping("/post")

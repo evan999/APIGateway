@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-//@RestController
 public class RestService {
 
     private final RestTemplate restTemplate;
@@ -24,7 +23,6 @@ public class RestService {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-//    @RequestMapping("/api/posts")
     public String getPostsPlainJSON() {
         String url = "https://jsonplaceholder.typicode.com/posts";
         return this.restTemplate.getForObject(url, String.class);
